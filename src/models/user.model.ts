@@ -1,6 +1,6 @@
-import mongoose, { Document, Schema } from "mongoose";
-import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import mongoose, { Schema } from "mongoose";
 import { Iuser } from "../types/interfaces/user.inter";
 
 const userSchema = new Schema<Iuser>({
@@ -47,7 +47,7 @@ const userSchema = new Schema<Iuser>({
 	],
 	userType: {
 		type: String,
-		enum: ['admin', 'supplier', 'distributor', 'consumer'],
+		enum: ['admin', 'investigator', 'reporter'],
 		required: true,
 	  },
     otp: {
