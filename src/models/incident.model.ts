@@ -35,7 +35,6 @@ const incidentSchema = new Schema<Iincident>({
 	},
 	status: {
 		type: String,
-		enum: Status
 	},
 	createdAt: {
 		type: Date,

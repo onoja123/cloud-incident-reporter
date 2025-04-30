@@ -13,7 +13,7 @@ export default class IncidentService {
 
     static async getAllByUser(userId: string): Promise<Iincident[]> {
         const incidents = await Incident.find({ user: userId })
-        .populate('category')
+        .populate('_createdBy')
         .populate('_assignedTo')
 
         return incidents;
@@ -21,7 +21,7 @@ export default class IncidentService {
 
     static async getIncidentById(id: string): Promise<Iincident | null> {
         const incidents = await Incident.findById(id)
-        .populate('category')
+        .populate('_createdBy')
         .populate('_assignedTo')
         return incidents;
     }
