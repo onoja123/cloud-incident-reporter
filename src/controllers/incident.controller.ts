@@ -84,6 +84,7 @@ export const getIncidentById = catchAsync(async(req: Request, res: Response, nex
         });
 
     } catch (error) {
+        console.log("Error getting incident:", error);
         return next(new AppError("An error occurred while trying to get your incident. Please try again.", ResponseHelper.INTERNAL_SERVER_ERROR))
     }
 })

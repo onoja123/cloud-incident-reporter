@@ -22,6 +22,6 @@ const auditSchema = new Schema<Iaudit>({
 });
 
 
-const Evidence = mongoose.model<Iaudit>('Evidence ', auditSchema)
+const Audit = mongoose.model<Iaudit>('Audit ', auditSchema)
 
-export default Evidence;
+export default Audit;
