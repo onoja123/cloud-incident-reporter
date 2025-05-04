@@ -23,15 +23,15 @@ const appRoutes: Routes = [
         router: IncidentRoute,
     },
     {
-        path: 'audit',
+        path: '/audit',
         router: AuditRoute,
     },
     {
-        path: 'report',
+        path: '/report',
         router: ReportRoute,
     },
     {
-        path: "evidence",
+        path: "/evidence",
         router: EvidenceRoute,
     }
 ];
