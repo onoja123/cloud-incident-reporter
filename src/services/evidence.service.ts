@@ -5,7 +5,7 @@ import { Ievidence } from "../types/interfaces/evidence.inter";
 export default class EvidenceService {
 
     static async getAll(userId: string): Promise<Ievidence[]> {
-        const evidence = await Evidence.find({ user: userId })
+        const evidence = await Evidence.find({ _uploadedBy: userId })
         .populate('_incident')
         .populate('_uploadedBy')
 
@@ -29,7 +29,7 @@ export default class EvidenceService {
 
         const newEvidence = await Evidence.create({
           ...data,
-          _user: userId,
+          _uploadedBy: userId,
         });
 
         await newEvidence.save();
