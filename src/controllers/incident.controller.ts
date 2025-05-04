@@ -42,7 +42,7 @@ export const createIncident = catchAsync(async(req: Request, res: Response, next
  */
 export const getAllIncidents = catchAsync(async(req: Request, res: Response, next: NextFunction) => {
 	try {
-        const incidents = await IncidentService.getAll();
+        const incidents = await IncidentService.getAll(req.user?.id);
 
         if(!incidents || incidents.length === 0) {
             return next(new AppError("Incidents not found", ResponseHelper.RESOURCE_NOT_FOUND))
