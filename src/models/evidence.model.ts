@@ -4,7 +4,7 @@ import { Ievidence } from "../types/interfaces/evidence.inter";
 const evidenceSchema = new Schema<Ievidence>({
 	_incident: {
 		type: Schema.Types.ObjectId,
-		ref: "User",
+		ref: "Incident",
 	},
 	_uploadedBy: {
 		type: Schema.Types.ObjectId,

@@ -4,7 +4,7 @@ import { Ireport } from "../types/interfaces/report.inter";
 const reportSchema = new Schema<Ireport>({
 	_incident: {
 		type: Schema.Types.ObjectId,
-		ref: "User",
+		ref: "Incident",
 	},
 	_generatedBy: {
 		type: Schema.Types.ObjectId,
