@@ -4,15 +4,15 @@ import { Iaudit } from "../types/interfaces/audit.inter";
 
 export default class AuditService {
 
-    static async getAll(): Promise<Iaudit[]> {
-        const audits = await Audit.find()
+    static async getAll(userId: string): Promise<Iaudit[]> {
+        const audits = await Audit.find({_user: userId })
         .populate('_user')
 
         return audits;
     }
 
     static async getAllByUser(userId: string): Promise<Iaudit[]> {
-        const audits = await Audit.find({ user: userId })
+        const audits = await Audit.find({ _user: userId })
         .populate('_user')
 
 

@@ -5,7 +5,7 @@ import { Ireport } from "../types/interfaces/report.inter";
 export default class ReportService {
 
     static async getAll(userId: string): Promise<Ireport[]> {
-        const reports = await Report.find({ user: userId })
+        const reports = await Report.find({ _generatedBy: userId })
         .populate('_incident')
         .populate('_generatedBy')
 
@@ -29,7 +29,7 @@ export default class ReportService {
 
         const newReport = await Report.create({
           ...data,
-          _user: userId,
+          _generatedBy: userId,
         });
 
         await newReport.save();

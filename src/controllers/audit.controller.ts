@@ -42,7 +42,7 @@ export const createAudit = catchAsync(async(req: Request, res: Response, next: N
  */
 export const getAllAudits = catchAsync(async(req: Request, res: Response, next: NextFunction) => {
 	try {
-        const audits = await AuditService.getAll();
+        const audits = await AuditService.getAll(req.user?.id);
 
         if(!audits || audits.length === 0) {
             return next(new AppError("Audits not found", ResponseHelper.RESOURCE_NOT_FOUND))

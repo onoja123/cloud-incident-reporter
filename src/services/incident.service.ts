@@ -4,15 +4,15 @@ import { Iincident } from "../types/interfaces/incident.inter";
 
 export default class IncidentService {
 
-    static async getAll(): Promise<Iincident[]> {
-        const incidents = await Incident.find()
+    static async getAll(userId: string): Promise<Iincident[]> {
+        const incidents = await Incident.find({__createdBy: userId})
         .populate('_createdBy')
         .populate('_assignedTo')
         return incidents;
     }
 
     static async getAllByUser(userId: string): Promise<Iincident[]> {
-        const incidents = await Incident.find({ user: userId })
+        const incidents = await Incident.find({ _createdBy: userId })
         .populate('_createdBy')
         .populate('_assignedTo')
 
@@ -35,7 +35,7 @@ export default class IncidentService {
 
         const newIncident = await Incident.create({
           ...data,
-          user: userId,
+          _createdBy: userId,
         });
 
         await newIncident.save();
