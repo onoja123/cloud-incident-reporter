@@ -44,9 +44,9 @@ export const getAllReports = catchAsync(async(req: Request, res: Response, next:
 	try {
         const reports = await ReportService.getAll(req.user?.id);
 
-        if(!reports || reports.length === 0) {
-            return next(new AppError("Report not found", ResponseHelper.RESOURCE_NOT_FOUND))
-        }
+        // if(!reports || reports.length === 0) {
+        //     return next(new AppError("Report not found", ResponseHelper.RESOURCE_NOT_FOUND))
+        // }
 
         ResponseHelper.sendSuccessResponse(res, {
             data: reports,

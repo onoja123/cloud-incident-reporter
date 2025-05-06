@@ -44,9 +44,9 @@ export const getAllEvidence = catchAsync(async(req: Request, res: Response, next
 	try {
         const evidences = await EvidenceService.getAll(req.user?.id);
 
-        if(!evidences || evidences.length === 0) {
-            return next(new AppError("Evidence not found", ResponseHelper.RESOURCE_NOT_FOUND))
-        }
+        // if(!evidences || evidences.length === 0) {
+        //     return next(new AppError("Evidence not found", ResponseHelper.RESOURCE_NOT_FOUND))
+        // }
 
         ResponseHelper.sendSuccessResponse(res, {
             data: evidences,
