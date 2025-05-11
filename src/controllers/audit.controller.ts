@@ -45,7 +45,10 @@ export const getAllAudits = catchAsync(async(req: Request, res: Response, next: 
         const audits = await AuditService.getAll(req.user?.id);
 
         if(!audits || audits.length === 0) {
-            return next(new AppError("Audits not found", ResponseHelper.RESOURCE_NOT_FOUND))
+            return ResponseHelper.sendSuccessResponse(res, {
+                data: [],
+                statusCode: ResponseHelper.OK,
+            });
         }
 
         ResponseHelper.sendSuccessResponse(res, {
@@ -75,7 +78,10 @@ export const getAuditById = catchAsync(async(req: Request, res: Response, next: 
         const audit = await AuditService.getAuditById(id);
 
         if (!audit) {
-            return next(new AppError("Audit not found", ResponseHelper.RESOURCE_NOT_FOUND));
+            return ResponseHelper.sendSuccessResponse(res, {
+                data: [],
+                statusCode: ResponseHelper.OK,
+            });
         }
 
         ResponseHelper.sendSuccessResponse(res, {
@@ -106,7 +112,10 @@ export const updateAudit = catchAsync(async(req: Request, res: Response, next: N
         const updatedAudit = await AuditService.updateAudit(id, req.body);
 
         if (!updatedAudit) {
-            return next(new AppError("Audit not found", ResponseHelper.RESOURCE_NOT_FOUND));
+            return ResponseHelper.sendSuccessResponse(res, {
+                data: [],
+                statusCode: ResponseHelper.OK,
+            });
         }
 
         ResponseHelper.sendSuccessResponse(res, {
