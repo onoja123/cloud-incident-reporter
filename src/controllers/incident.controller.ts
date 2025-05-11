@@ -44,9 +44,12 @@ export const getAllIncidents = catchAsync(async(req: Request, res: Response, nex
 	try {
         const incidents = await IncidentService.getAll(req.user?.id);
 
-        // if(!incidents || incidents.length === 0) {
-        //     return next(new AppError("Incidents not found", ResponseHelper.RESOURCE_NOT_FOUND))
-        // }
+        if (!incidents || incidents.length === 0) {
+            return ResponseHelper.sendSuccessResponse(res, {
+                data: [],
+                statusCode: ResponseHelper.OK,
+            });
+        }
 
         ResponseHelper.sendSuccessResponse(res, {
             data: incidents,
@@ -75,7 +78,10 @@ export const getIncidentById = catchAsync(async(req: Request, res: Response, nex
         const Incident = await IncidentService.getIncidentById(id);
 
         if (!Incident) {
-            return next(new AppError("Incident not found", ResponseHelper.RESOURCE_NOT_FOUND));
+            return ResponseHelper.sendSuccessResponse(res, {
+                data: [],
+                statusCode: ResponseHelper.OK,
+            });
         }
 
         ResponseHelper.sendSuccessResponse(res, {
@@ -107,7 +113,10 @@ export const updateIncident = catchAsync(async(req: Request, res: Response, next
         const updatedIncident = await IncidentService.updateIncident(id, req.body);
 
         if (!updatedIncident) {
-            return next(new AppError("Incident not found", ResponseHelper.RESOURCE_NOT_FOUND));
+            return ResponseHelper.sendSuccessResponse(res, {
+                data: [],
+                statusCode: ResponseHelper.OK,
+            });
         }
 
         ResponseHelper.sendSuccessResponse(res, {

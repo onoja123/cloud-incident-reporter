@@ -44,9 +44,12 @@ export const getAllEvidence = catchAsync(async(req: Request, res: Response, next
 	try {
         const evidences = await EvidenceService.getAll(req.user?.id);
 
-        // if(!evidences || evidences.length === 0) {
-        //     return next(new AppError("Evidence not found", ResponseHelper.RESOURCE_NOT_FOUND))
-        // }
+        if(!evidences || evidences.length === 0) {
+            return ResponseHelper.sendSuccessResponse(res, {
+                data: [],
+                statusCode: ResponseHelper.OK,
+            });
+        }
 
         ResponseHelper.sendSuccessResponse(res, {
             data: evidences,
@@ -75,7 +78,10 @@ export const getEvidenceById = catchAsync(async(req: Request, res: Response, nex
         const evidence = await EvidenceService.getEvidenceById(id);
 
         if (!evidence) {
-            return next(new AppError("Evidence not found", ResponseHelper.RESOURCE_NOT_FOUND));
+            return ResponseHelper.sendSuccessResponse(res, {
+                data: [],
+                statusCode: ResponseHelper.OK,
+            });
         }
 
         ResponseHelper.sendSuccessResponse(res, {
@@ -106,7 +112,10 @@ export const updateEvidence = catchAsync(async(req: Request, res: Response, next
         const updatedEvidence= await EvidenceService.updateEvidence(id, req.body);
 
         if (!updatedEvidence) {
-            return next(new AppError("Evidence not found", ResponseHelper.RESOURCE_NOT_FOUND));
+            return ResponseHelper.sendSuccessResponse(res, {
+                data: [],
+                statusCode: ResponseHelper.OK,
+            });
         }
 
         ResponseHelper.sendSuccessResponse(res, {

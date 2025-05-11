@@ -106,7 +106,10 @@ export const updateReport = catchAsync(async(req: Request, res: Response, next: 
         const updatedReport = await ReportService.updateReport(id, req.body);
 
         if (!updatedReport) {
-            return next(new AppError("Report not found", ResponseHelper.RESOURCE_NOT_FOUND));
+            return ResponseHelper.sendSuccessResponse(res, {
+                data: [],
+                statusCode: ResponseHelper.OK,
+            });
         }
 
         ResponseHelper.sendSuccessResponse(res, {
